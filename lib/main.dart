@@ -1,3 +1,5 @@
+import 'package:bluetooth_printing/command_tool.dart';
+import 'package:bluetooth_printing/create_order_response_model.dart';
 import 'package:bluetooth_printing/scan_bluetooth.dart';
 import 'package:flutter/material.dart';
 
@@ -10,9 +12,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return const MaterialApp(
-      home: HomePage(),
+    return MaterialApp(
+      navigatorKey: appNavigatorKey,
+      home: HomePage(
+        pdfUrl: '',
+        invoiceData: InvoiceData(),
+      ),
     );
   }
 }

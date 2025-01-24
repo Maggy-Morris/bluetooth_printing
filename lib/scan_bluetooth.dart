@@ -2,13 +2,16 @@ import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:bluetooth_print_plus/bluetooth_print_plus.dart';
+import 'package:bluetooth_printing/create_order_response_model.dart';
 import 'package:bluetooth_printing/function_page.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+   final String pdfUrl;
+  final InvoiceData? invoiceData;
+  const HomePage({super.key, required this.pdfUrl,  this.invoiceData});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -100,7 +103,11 @@ class _HomePageState extends State<HomePage> {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => FunctionPage(_device!)));
+                    builder: (context) => FunctionPage(
+                          device: _device!,
+                          pdfUrl: widget.pdfUrl,
+                          invoiceData: widget.invoiceData,
+                        )));
           });
           break;
         case ConnectState.disconnected:
